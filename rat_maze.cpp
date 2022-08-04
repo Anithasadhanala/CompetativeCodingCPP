@@ -149,7 +149,48 @@ int main(){
 
 
 
-//   
+//   Eight directional maze
+
+
+
+// It is a Good Day
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int unique_paths(int i,int j,int r,int c,string s,vector<vector<int>>&v,int arr_i[],int arr_j[],string &direc){
+
+	if(i>r || j>c || i<0 || j<0 || v[i][j]==1) return 0;
+
+	if(i==r && j==c){
+		cout<<s<<endl;
+		return 1;
+	} 
+
+	v[i][j] = 1;
+	int  sum=0;
+	for(int x=0;x<8;x++){
+		sum+=unique_paths(i+arr_i[x],j+arr_j[x],r,c,s+direc[x],v,arr_i,arr_j,direc);
+	}
+	
+	v[i][j]=0;
+	return sum;
+}
+
+
+int main(){
+
+	int r,c;
+	cin>>r>>c;
+	int arr_i[8] = {1,0,-1,0,-1,1,-1,1};
+	int arr_j[8] = {0,1,0,-1,1,1,-1,-1};
+	string direc = "DRULABDC";
+	vector<vector<int>>v(r,vector<int>(c,0));
+	cout<<(unique_paths(0,0,r-1,c-1,"",v,arr_i,arr_j,direc));
+	
+	return 0;
+
+}
 
 
 
