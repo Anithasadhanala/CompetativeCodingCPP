@@ -1,40 +1,47 @@
+
+// It is a Good Day
+
 #include<bits/stdc++.h>
 using namespace std;
 
-const int k=1000000;
-int arr[1000000];
+const int n= 1e6+1;
+int arr[n];
 
-void seive_creation(){
-	for(int i=0;i<k;i++){
-		arr[i]=i;
+void seive_erothes(){
+	for(int i=0;i<n;i++){
+		arr[i]=0;
 	}
 
-	for(int i=2;i*i<=k;i++){
-		if(arr[i]==i){
-			for(int j=i*i;j<k;j+=i){
-				arr[j]=i;
+	for(int i=2;i*i<=n;i++){
+		if(arr[i]==0){
+			for(int j=2*i;j<=n;j+=i){
+				arr[j] = i;
 			}
 		}
+		
 	}
+
 }
 
-
 int main(){
-	seive_creation();
-	int q;
-	cin>>q;
-	while(q--){
-		int n;
-		cin>>n;
 
-		int i=n;
-		while(i>1){
+	seive_erothes();
+
+	int m;
+	cin>>m;
+	while(m--){
+		int k;
+		cin>>k;
+		int i=k;
+		while(arr[i]!=0){
 			cout<<arr[i]<<" ";
 			i=i/arr[i];
 		}
+		cout<<i;
 		cout<<endl;
+	
 	}
-
-
+	
+	return 0;
 
 }
